@@ -6,6 +6,7 @@ app.use(logRequests); //This global middleware logs\prints every request that co
 
 // Middleware to log\print requests
 function logRequests(req, res, next) {
+    //we are printing method, url, timestamp
     const log = `${req.method} ${req.url} - ${new Date().toISOString()}`;
     console.log(log);
     next(); // Pass to the next middleware or route handler
@@ -18,5 +19,3 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
-
-module.exports = app;
