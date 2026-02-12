@@ -1,46 +1,28 @@
-const express = require("express");
-const {Router} = require("express");
+const { Router } = require("express");
+const { adminMiddleware } = require("../middleware/adminMiddleware");
+const adminController = require("../controllers/adminController");
+
+// Create a new instance of Router
 const adminRouter = Router();
-const { adminModel } = require("../db");
 
+// Admin Signup Route
+adminRouter.post("/signup", adminController.adminSignup);
 
+// Admin Signin Route
+adminRouter.post("/signin", adminController.adminSignin);
 
-// Define the admin routes for signup 
-adminRouter.post("/signup", function (req, res) {
-    res.json({
-        message: "Signup endpoint",
-    });
-});
+// Create Course Route
+adminRouter.post("/course", adminMiddleware, adminController.createCourse);
 
-// Define the admin routes for signin 
-adminRouter.post("/signin", function (req, res) {
-    res.json({
-        message: "Signin endpoint",
-    });
-});
+// Update Course Route
+adminRouter.put("/course", adminMiddleware, adminController.updateCourse);
 
-// Define the admin routes for creating a course 
-adminRouter.post("/", function (req, res) {
-    res.json({
-        message: "Course endpoint",
-    });
-});
+// Delete Course Route
+adminRouter.delete("/course", adminMiddleware, adminController.deleteCourse);
 
-// Define the admin routes for updating a course
-adminRouter.put("/", function (req, res) {
-    res.json({
-        message: "course endpoint",
-    });
-});
+// Get All Courses Route
+adminRouter.get("/course/bulk", adminMiddleware, adminController.getAllCourses);
 
-// Define the admin routes for getting all courses
-adminRouter.get("/bulk", function (req, res) {
-    res.json({
-        message: "bulk endpoint",
-    });
-});
-
-// Export the adminRouter so that it can be used in other files
 module.exports = {
-    adminRouter: adminRouter,
+    adminRouter,
 };

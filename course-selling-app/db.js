@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://admin:ir4hePfR0VhnTJhr@cluster0.tyo065j.mongodb.net/course-app");
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId ;
 
@@ -44,5 +43,4 @@ module.exports = {
     adminModel,
     courseModel,
     purchaseModel
-
 }

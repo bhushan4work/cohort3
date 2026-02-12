@@ -1,52 +1,19 @@
-const express = require("express");
-const {Router} = require("express");
+const { Router } = require("express");
+const { userMiddleware } = require("../middleware/userMiddleware");
+const courseController = require("../controllers/courseController");
+
+const {userSessionMiddleware} = require("../middleware/userSessionMiddleware");
+
+// Create a new Router instance for course routes
 const courseRouter = Router();
-// Import courseModel from db.js
-const { courseModel } = require("../db");
 
+// Route to purchase a course with user authentication
+courseRouter.post("/purchase", userSessionMiddleware, userMiddleware, courseController.purchaseCourse);
 
+// Route to preview available courses without authentication
+courseRouter.get("/preview", courseController.previewCourses);
 
-
-// Define the course routes for previewing a course
-courseRouter.get("/preview", function (req, res) {
-    // you would expect the user to pay money to purchase a course
-
-    res.json({
-        message: "Priview endpoint!",
-    });
-});
-
-// Define the course routes for getting all courses
-courseRouter.get("/courses", function (req, res) {
-    res.json({
-        message: "Pourses endpoint!",
-    });
-});
-
-// Export the courseRouter so that it can be used in other files
+// Export the courseRouter for use in other parts of the application
 module.exports = {
-    courseRouter: courseRouter,
+    courseRouter,
 };
-
-
-/*
-function createUserRoutes() {
-    app.get("/course/preview", function (req, res) {
-        // you would expect the user to pay money to purchase a course
-
-        res.json({
-            message: "Priview endpoint!",
-        });
-    });
-
-    app.get("/courses", function (req, res) {
-        res.json({
-            message: "Pourses endpoint!",
-        });
-    });
-}
-
-module.exports = {
-    createUserRoutes: createUserRoutes,
-};
-*/

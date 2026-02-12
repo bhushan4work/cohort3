@@ -1,57 +1,21 @@
-const express = require("express");
-const {Router} = require("express");
+const { Router } = require("express");
+const { userMiddleware } = require("../middleware/userMiddleware");
+const userController = require("../controllers/userController");
+
 const userRouter = Router();
 
+// User Signup Route
+userRouter.post("/signup", userController.userSignup);
 
-// Define the user routes for signup 
-userRouter.post("/signup", function (req, res) {
-    res.json({
-        message: "Signup endpoint!",
-    });
-});
+// User Signin Route
+userRouter.post("/signin", userController.userSignin);
 
-// Define the user routes for signin 
-userRouter.post("/signin", function (req, res) {
-    res.json({
-        message: "Signin endpoint!",
-    });
-});
+// User Signout Route
+userRouter.post("/signout", userController.userSignout);
 
-// Define the user routes for purchases made by the user
-userRouter.get("/purchases", function (req, res) {
-    res.json({
-        message: "Purchases endpoint!",
-    });
-});
-
-// Export the userRouter so that it can be used in other files
-module.exports = {
-    userRouter: userRouter,
-};
-
-
-/*
-function createUserRoutes() {
-    app.post("/user/signup", function (req, res) {
-        res.json({
-            message: "Signup endpoint!",
-        });
-    });
-
-    app.post("/user/signin", function (req, res) {
-        res.json({
-            message: "Signin endpoint!",
-        });
-    });
-
-    app.get("/user/purchases", function (req, res) {
-        res.json({
-            message: "Purchases endpoint!",
-        });
-    });
-}
+// Get User Purchases Route
+userRouter.get("/purchases", userMiddleware, userController.getUserPurchases);
 
 module.exports = {
-    createUserRoutes: createUserRoutes,
+    userRouter,
 };
-*/
