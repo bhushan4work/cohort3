@@ -39,6 +39,7 @@ async function userSignup(req, res) {
         })
     }
     catch (error) {
+        //extra check to determine if it's server error or user already exists
         if (error.code === 11000) { // MongoDB duplicate key error to check if input data already exists in db
             return res.status(400).json({
                 message: "User already exists",
@@ -66,7 +67,8 @@ async function userSignin(req, res) {
         })
     }
 
-    const { email, password } = result.body; //ensures that we r using clean validated input which is checked with zod above
+    const { email, password } = req.body; 
+
     const user = await userModel.findOne({ email });
 
     if (!user) {

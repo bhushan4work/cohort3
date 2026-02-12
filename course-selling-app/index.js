@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -17,9 +19,9 @@ app.use("/api/v1/course", courseRouter);
 //made this async fxn here so that it awaits until mongodb connects & only then the server runs
 //so here if db is not connected properly server never starts instead of starting the server with improper db connection
 async function main() {
-    await mongoose.connect(MONGODB_URI);
+    await mongoose.connect(process.env. MONGODB_URI);
 
-    app.listen(PORT, () => {
+    app.listen(process.env.PORT, () => {
         console.log("server is running on 3000 port");
     })
 }

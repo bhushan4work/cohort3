@@ -3,6 +3,7 @@ const Schema = mongoose.Schema ;
 const ObjectId = mongoose.Types.ObjectId ;
 
 const courseSchema = new Schema({
+    //_id : ObjectId is created automatically as a unique id on creation of each new course
     title : String ,
     price: Number ,
     description : String ,
