@@ -11,7 +11,7 @@ const courseSchema = new Schema({
     creatorId : ObjectId // Reference to the creator's ObjectId (Admin) who made this course
 })
 
-const courseModel = moongoose.model("Course" , courseSchema);
+const courseModel = mongoose.model("Course" , courseSchema);
 
 module.exports = {
     courseModel

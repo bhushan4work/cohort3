@@ -3,7 +3,7 @@ const { courseModel } = require("../models/courseModel");
 const { purchaseModel } = require("../models/purchaseModel");
 const bcrypt = require("bcrypt");
 const { mongo, default: mongoose } = require("mongoose");
-const zod = requre("zod");
+const zod = require("zod");
 
 async function userSignup(req, res) {
 

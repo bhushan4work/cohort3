@@ -1,7 +1,7 @@
 const { adminModel } = require("../models/adminModel");
 const { courseModel } = require("../models/courseModel");
 const bcrypt = require("bcrypt");
-const zod = requre("zod");
+const zod = require("zod");
 
 
 async function adminSignup(req, res) {

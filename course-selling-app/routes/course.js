@@ -1,8 +1,7 @@
 const { Router } = require("express");
 const { userMiddleware } = require("../middleware/userMiddleware");
 const courseController = require("../controllers/courseController");
-
-const {userSessionMiddleware} = require("../middleware/userSessionMiddleware");
+const userSessionMiddleware = require("../middleware/userSessionMiddleware");
 
 // Create a new Router instance for course routes
 const courseRouter = Router();
@@ -11,7 +10,7 @@ const courseRouter = Router();
 courseRouter.post("/purchase", userSessionMiddleware, userMiddleware, courseController.purchaseCourse);
 
 // Route to preview available courses without authentication
-courseRouter.get("/preview", courseController.previewCourses);
+courseRouter.get("/preview", courseController.previewCourse);
 
 // Export the courseRouter for use in other parts of the application
 module.exports = {

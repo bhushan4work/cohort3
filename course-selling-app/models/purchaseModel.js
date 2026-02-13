@@ -7,7 +7,7 @@ const purchaseSchema = new Schema({
     courseId: ObjectId, // Reference to the purchased course's ObjectId , (identify which course is purchased)
 })
 
-const purchaseModel = moongoose.model("Purchase" , purchaseSchema);
+const purchaseModel = mongoose.model("Purchase" , purchaseSchema);
 
 module.exports = {
     purchaseModel
